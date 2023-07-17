@@ -8,12 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import mime from 'mime';
+//}
 const guessContentType = (filename) => {
     const ext = String(filename === null || filename === void 0 ? void 0 : filename.split('.').pop());
     const mt = mime.getType(ext);
     return mt;
 };
-export function fetchManifest({ cache = true, root = '', recurse = false }) {
+function fetchManifest({ cache = true, root = '', recurse = false }) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
         const manifest = yield fetch(`${root}/manifest.json`, { cache: (cache) ? 'default' : 'no-store' })
@@ -62,3 +63,4 @@ export function fetchManifest({ cache = true, root = '', recurse = false }) {
         return new_manifest;
     });
 }
+export { fetchManifest, };

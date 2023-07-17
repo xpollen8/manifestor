@@ -1,26 +1,26 @@
 import mime from 'mime';
 
-declare module manifestor {
-	export type Obj = {
+//declare namespace types {
+	type Obj = {
 		[key: string]: string | string[] | object | object[]
 	};
 
-	export type ManifestDetails = {
+	type ManifestDetails = {
 		body?: string,
 		source?: string,
 		date?: string,
 	};
 
-	export type ManifestDescription = {
+	type ManifestDescription = {
 		title?: string,
 		summary?: string,
 		date?: string,
 		details?: ManifestDetails,
 	};
 
-	export type ManifestHistory = ManifestDescription[];
+	type ManifestHistory = ManifestDescription[];
 
-	export type ManifestEntry = ManifestDescription & {
+	type ManifestEntry = ManifestDescription & {
 		ordinal?: string | number,
 		type?: string,
 		error?: string,
@@ -30,14 +30,14 @@ declare module manifestor {
 		contents?: ManifestEntry[],
 	}
 
-	export type Manifest = {
+	type Manifest = {
 		root?: string,
 		title?: string,
 		description: ManifestDescription,
 		contents: ManifestEntry[],
 		history: ManifestHistory,
 	}
-}
+//}
 
 const guessContentType = (filename: string) => {
 	const ext: string = String(filename?.split('.').pop());
@@ -45,12 +45,12 @@ const guessContentType = (filename: string) => {
 	return mt;
 }
 
-export async function fetchManifest ({ cache = true, root = '', recurse = false }:
+async function fetchManifest ({ cache = true, root = '', recurse = false }:
 	{
 		cache?: boolean,
 		root?: string,
 		recurse?: boolean
-	}) : Promise<manifestor.Manifest> {
+	}) : Promise<Manifest> {
 
 	const manifest = await fetch(`${root}/manifest.json`,
 		{ cache: (cache) ? 'default' : 'no-store' })
@@ -88,7 +88,7 @@ export async function fetchManifest ({ cache = true, root = '', recurse = false 
 	}));
 
 	// sort entries - ideally w/errors on bottom below directories
-	new_manifest.contents = new_manifest.contents.sort((a: manifestor.Obj, b: manifestor.Obj) => {
+	new_manifest.contents = new_manifest.contents.sort((a: Obj, b: Obj) => {
 		const name1 = String(a.title || a.name);
 		const name2 = String(a.title || b.name);
 		//if (name1 === name2) {
@@ -100,4 +100,14 @@ export async function fetchManifest ({ cache = true, root = '', recurse = false 
 	});
 
 	return new_manifest;
+}
+
+export {
+	fetchManifest, 
+	Obj,
+	ManifestDetails,
+	ManifestDescription,
+	ManifestHistory,
+	ManifestEntry,
+	Manifest,
 }
