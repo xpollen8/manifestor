@@ -21,7 +21,7 @@ export declare module manifestor {
 	export type ManifestEntry = ManifestDescription & {
 		ordinal?: string | number,
 		type?: string,
-		json?: Obj,
+		json?: Obj | undefined,
 		error?: string,
 		name?: string,
 		link?: string,
