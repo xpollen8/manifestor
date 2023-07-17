@@ -1,6 +1,6 @@
 import mime from 'mime';
 
-//declare module 'manifestor' {
+declare namespace manifestor {
 	export type Obj = {
 		[key: string]: string | string[] | object | object[]
 	};
@@ -37,7 +37,7 @@ import mime from 'mime';
 		contents: ManifestEntry[],
 		history: ManifestHistory,
 	}
-//}
+}
 
 const guessContentType = (filename: string) => {
 	const ext: string = String(filename?.split('.').pop());
@@ -50,7 +50,7 @@ const fetchManifest = async ({ cache = true, root = '', recurse = false }:
 		cache?: boolean,
 		root?: string,
 		recurse?: boolean
-	}) : Promise<Manifest> => {
+	}) : Promise<manifestor.Manifest> => {
 
 	const manifest = await fetch(`${root}/manifest.json`,
 		{ cache: (cache) ? 'default' : 'no-store' })
@@ -88,7 +88,7 @@ const fetchManifest = async ({ cache = true, root = '', recurse = false }:
 	}));
 
 	// sort entries - ideally w/errors on bottom below directories
-	new_manifest.contents = new_manifest.contents.sort((a: Obj, b: Obj) => {
+	new_manifest.contents = new_manifest.contents.sort((a: manifestor.Obj, b: manifestor.Obj) => {
 		const name1 = String(a.title || a.name);
 		const name2 = String(a.title || b.name);
 		//if (name1 === name2) {
