@@ -62,4 +62,5 @@ function fetchManifest({ cache = true, root = '', recurse = false }) {
         return new_manifest;
     });
 }
-export default { fetchManifest };
+//export as namespace manifestor;
+export default fetchManifest;
