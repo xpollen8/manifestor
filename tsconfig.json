@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+    "target": "ES2015",
+    "module": "esnext",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+		"declaration": true
+  },
+  "include": [
+    "./src"
+  ],
+	"types": [ "./src/index.d.ts" ],
+	"typeRoots": [ "./src" ]
+}
