@@ -2,6 +2,7 @@
   "name": "manifestor",
   "version": "1.0.9",
   "type": "module",
+	"module": "manifestor",
   "description": "Making manifests great",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
