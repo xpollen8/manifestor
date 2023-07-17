@@ -31,11 +31,9 @@ declare module manifestor {
         history: ManifestHistory;
     };
 }
-declare const _default: {
-    fetchManifest: ({ cache, root, recurse }: {
-        cache?: boolean | undefined;
-        root?: string | undefined;
-        recurse?: boolean | undefined;
-    }) => Promise<manifestor.Manifest>;
-};
-export default _default;
+export default function fetchManifest({ cache, root, recurse }: {
+    cache?: boolean;
+    root?: string;
+    recurse?: boolean;
+}): Promise<manifestor.Manifest>;
+export {};

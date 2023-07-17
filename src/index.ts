@@ -39,20 +39,18 @@ declare module manifestor {
 	}
 }
 
-//export manifestor;
-
 const guessContentType = (filename: string) => {
 	const ext: string = String(filename?.split('.').pop());
 	const mt = mime.getType(ext);
 	return mt;
 }
 
-const fetchManifest = async ({ cache = true, root = '', recurse = false }:
+export default async function fetchManifest ({ cache = true, root = '', recurse = false }:
 	{
 		cache?: boolean,
 		root?: string,
 		recurse?: boolean
-	}) : Promise<manifestor.Manifest> => {
+	}) : Promise<manifestor.Manifest> {
 
 	const manifest = await fetch(`${root}/manifest.json`,
 		{ cache: (cache) ? 'default' : 'no-store' })
@@ -103,5 +101,3 @@ const fetchManifest = async ({ cache = true, root = '', recurse = false }:
 
 	return new_manifest;
 }
-
-export default { fetchManifest };
