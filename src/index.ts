@@ -45,7 +45,7 @@ const guessContentType = (filename: string) => {
 	return mt;
 }
 
-export default async function fetchManifest ({ cache = true, root = '', recurse = false }:
+export async function fetchManifest ({ cache = true, root = '', recurse = false }:
 	{
 		cache?: boolean,
 		root?: string,

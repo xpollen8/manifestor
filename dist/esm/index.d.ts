@@ -31,7 +31,7 @@ declare module manifestor {
         history: ManifestHistory;
     };
 }
-export default function fetchManifest({ cache, root, recurse }: {
+export declare function fetchManifest({ cache, root, recurse }: {
     cache?: boolean;
     root?: string;
     recurse?: boolean;

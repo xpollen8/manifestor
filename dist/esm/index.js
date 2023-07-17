@@ -13,7 +13,7 @@ const guessContentType = (filename) => {
     const mt = mime.getType(ext);
     return mt;
 };
-export default function fetchManifest({ cache = true, root = '', recurse = false }) {
+export function fetchManifest({ cache = true, root = '', recurse = false }) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
         const manifest = yield fetch(`${root}/manifest.json`, { cache: (cache) ? 'default' : 'no-store' })
