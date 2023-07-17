@@ -10,9 +10,9 @@
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-	"files": {
+	"files": [
 		"dist/*"
-	},
+	],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/xpollen8/manifestor.git"
