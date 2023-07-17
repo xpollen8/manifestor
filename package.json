@@ -1,11 +1,11 @@
 {
   "name": "manifestor",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "type": "module",
   "description": "Making manifests great",
-  "main": "./dist/esm/index.js",
+  "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
-  "types": "./dist/esm/types.d.ts",
+  "types": "./dist/esm/index.d.ts",
   "scripts": {
     "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "prepublishOnly": "npm run tsc",

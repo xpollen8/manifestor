@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mime_1 = __importDefault(require("mime"));
+//}
 const guessContentType = (filename) => {
     const ext = String(filename === null || filename === void 0 ? void 0 : filename.split('.').pop());
     const mt = mime_1.default.getType(ext);
