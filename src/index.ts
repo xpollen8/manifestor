@@ -1,4 +1,4 @@
-export declare module manifestor {
+export declare namespace manifestor {
 	export type Obj = {
 		[key: string]: string | string[] | object | object[]
 	};
