@@ -100,14 +100,4 @@ async function fetchManifest ({ cache = true, root = '', recurse = false }:
 	return new_manifest;
 }
 
-export {
-	fetchManifest,
-	Obj,
-	ManifestDetails,
-	ManifestDescription,
-	ManifestHistory,
-	ManifestEntry,
-	Manifest,
-}
-
 export default { fetchManifest };

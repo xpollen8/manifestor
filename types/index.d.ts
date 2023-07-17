@@ -1,6 +1,3 @@
-type Obj = {
-    [key: string]: string | string[] | object | object[];
-};
 type ManifestDetails = {
     body?: string;
     source?: string;
@@ -34,7 +31,6 @@ declare function fetchManifest({ cache, root, recurse }: {
     root?: string;
     recurse?: boolean;
 }): Promise<Manifest>;
-export { fetchManifest, Obj, ManifestDetails, ManifestDescription, ManifestHistory, ManifestEntry, Manifest, };
 declare const _default: {
     fetchManifest: typeof fetchManifest;
 };
