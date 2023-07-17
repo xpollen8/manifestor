@@ -1,9 +1,10 @@
-import './index.d';
+//import './index.d';
+import mime from 'mime';
 
-const guessContentType = (filename: string): string => {
-	const mime = require('mime-types');
-	const ext = mime.lookup(filename);
-	return ext;
+const guessContentType = (filename: string) => {
+	const ext: string = String(filename?.split('.').pop());
+	const mt = mime.getType(ext);
+	return mt;
 }
 
 const fetchManifest = async ({ cache = true, root = '', recurse = false }:

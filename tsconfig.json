@@ -1,14 +1,18 @@
 {
 	"compilerOptions": {
-    "target": "ES2015",
-    "module": "esnext",
+    "target": "es6",
+    "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
+		"moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist/esm",
+		"typeRoots": [
+			"./src"
+		],
 		"declaration": true
   },
   "include": [
-    "./src"
+    "./src/*"
   ]
 }

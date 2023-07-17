@@ -8,12 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-require("./index.d");
+//import './index.d';
+const mime_1 = __importDefault(require("mime"));
 const guessContentType = (filename) => {
-    const mime = require('mime-types');
-    const ext = mime.lookup(filename);
-    return ext;
+    const ext = String(filename === null || filename === void 0 ? void 0 : filename.split('.').pop());
+    const mt = mime_1.default.getType(ext);
+    return mt;
 };
 const fetchManifest = ({ cache = true, root = '', recurse = false }) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;

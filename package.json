@@ -1,21 +1,14 @@
 {
   "name": "manifestor",
-  "version": "1.0.2",
-	"type": "module",
+  "version": "1.0.4",
+  "type": "module",
   "description": "Making manifests great",
   "main": "./dist/cjs/index.js",
-	"module": "./dist/esm/index.js",
-	"types": "./dist/esm/index.d.ts",
-	"files": [
-		"./dist/cjs/index.js",
-		"./dist/cjs/index.d.ts",
-		"./dist/esm/index.js",
-		"./dist/esm/index.d.ts"
-	],
-  "typings": "./dist/esm/index.d.ts",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/types.d.ts",
   "scripts": {
     "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
-		"prepublishOnly": "npm run tsc",
+    "prepublishOnly": "npm run tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -29,9 +22,10 @@
   },
   "homepage": "https://github.com/xpollen8/manifestor#readme",
   "dependencies": {
-    "mime-types": "^2.1.35"
+    "mime": "^3.0.0"
   },
   "devDependencies": {
+    "@types/mime": "^3.0.1",
     "@types/node": "^20.4.2",
     "typescript": "^5.1.6"
   }
