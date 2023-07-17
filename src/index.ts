@@ -1,6 +1,6 @@
 import mime from 'mime';
 
-declare namespace manifestor {
+declare module manifestor {
 	export type Obj = {
 		[key: string]: string | string[] | object | object[]
 	};
@@ -104,4 +104,4 @@ const fetchManifest = async ({ cache = true, root = '', recurse = false }:
 	return new_manifest;
 }
 
-export default fetchManifest;
+export default { fetchManifest };

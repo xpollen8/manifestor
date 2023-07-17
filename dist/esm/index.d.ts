@@ -1,4 +1,4 @@
-declare namespace manifestor {
+declare module manifestor {
     type Obj = {
         [key: string]: string | string[] | object | object[];
     };
@@ -31,9 +31,11 @@ declare namespace manifestor {
         history: ManifestHistory;
     };
 }
-declare const fetchManifest: ({ cache, root, recurse }: {
-    cache?: boolean | undefined;
-    root?: string | undefined;
-    recurse?: boolean | undefined;
-}) => Promise<manifestor.Manifest>;
-export default fetchManifest;
+declare const _default: {
+    fetchManifest: ({ cache, root, recurse }: {
+        cache?: boolean | undefined;
+        root?: string | undefined;
+        recurse?: boolean | undefined;
+    }) => Promise<manifestor.Manifest>;
+};
+export default _default;

@@ -66,4 +66,4 @@ const fetchManifest = ({ cache = true, root = '', recurse = false }) => __awaite
     });
     return new_manifest;
 });
-exports.default = fetchManifest;
+exports.default = { fetchManifest };
