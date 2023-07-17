@@ -8,13 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import './index.d';
-//export default manifestor;
 const guessContentType = (filename) => {
     const mime = require('mime-types');
     const ext = mime.lookup(filename);
     return ext;
 };
-export const fetchManifest = ({ cache = true, root = '', recurse = false }) => __awaiter(void 0, void 0, void 0, function* () {
+const fetchManifest = ({ cache = true, root = '', recurse = false }) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const manifest = yield fetch(`${root}/manifest.json`, { cache: (cache) ? 'default' : 'no-store' })
         .then(res => res.json())
@@ -61,3 +60,4 @@ export const fetchManifest = ({ cache = true, root = '', recurse = false }) => _
     });
     return new_manifest;
 });
+export default fetchManifest;

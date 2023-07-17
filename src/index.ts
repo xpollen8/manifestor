@@ -1,13 +1,12 @@
 import './index.d';
 
-//export default manifestor;
 const guessContentType = (filename: string): string => {
 	const mime = require('mime-types');
 	const ext = mime.lookup(filename);
 	return ext;
 }
 
-export const fetchManifest = async ({ cache = true, root = '', recurse = false }:
+const fetchManifest = async ({ cache = true, root = '', recurse = false }:
 	{
 		cache?: boolean,
 		root?: string,
@@ -63,3 +62,5 @@ export const fetchManifest = async ({ cache = true, root = '', recurse = false }
 
 	return new_manifest;
 }
+
+export default fetchManifest;

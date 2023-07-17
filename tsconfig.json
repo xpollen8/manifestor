@@ -5,12 +5,10 @@
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
+    "outDir": "./dist/esm",
 		"declaration": true
   },
   "include": [
     "./src"
-  ],
-	"types": [ "./src/index.d.ts" ],
-	"typeRoots": [ "./src" ]
+  ]
 }
