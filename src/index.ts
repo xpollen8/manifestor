@@ -63,4 +63,4 @@ const fetchManifest = async ({ cache = true, root = '', recurse = false }:
 	return new_manifest;
 }
 
-export default { fetchManifest };
+export default fetchManifest;

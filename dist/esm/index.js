@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,15 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-//import './index.d';
-const mime_1 = __importDefault(require("mime"));
+import mime from 'mime';
 const guessContentType = (filename) => {
     const ext = String(filename === null || filename === void 0 ? void 0 : filename.split('.').pop());
-    const mt = mime_1.default.getType(ext);
+    const mt = mime.getType(ext);
     return mt;
 };
 const fetchManifest = ({ cache = true, root = '', recurse = false }) => __awaiter(void 0, void 0, void 0, function* () {
@@ -66,4 +60,4 @@ const fetchManifest = ({ cache = true, root = '', recurse = false }) => __awaite
     });
     return new_manifest;
 });
-exports.default = fetchManifest;
+export default fetchManifest;
