@@ -35,3 +35,7 @@ declare function fetchManifest({ cache, root, recurse }: {
     recurse?: boolean;
 }): Promise<Manifest>;
 export { fetchManifest, Obj, ManifestDetails, ManifestDescription, ManifestHistory, ManifestEntry, Manifest, };
+declare const _default: {
+    fetchManifest: typeof fetchManifest;
+};
+export default _default;

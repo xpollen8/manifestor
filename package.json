@@ -3,19 +3,11 @@
   "version": "1.0.9",
   "type": "module",
   "description": "Making manifests great",
-  "main": "./dist/cjs/index.js",
-	"exports": {
-		".": {
-		"require": "./dist/cjs/index.js",
-		"import": "./dist/esm/index.js",
-		"types": "./dist/esm/index.d.ts"
-		}
-	},
-  "module": "manifestor",
-  "types": "./dist/esm/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
-    "prepublishOnly": "npm run tsc",
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

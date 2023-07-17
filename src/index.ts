@@ -1,43 +1,41 @@
 import mime from 'mime';
 
-//declare namespace types {
-	type Obj = {
-		[key: string]: string | string[] | object | object[]
-	};
+type Obj = {
+	[key: string]: string | string[] | object | object[]
+};
 
-	type ManifestDetails = {
-		body?: string,
-		source?: string,
-		date?: string,
-	};
+type ManifestDetails = {
+	body?: string,
+	source?: string,
+	date?: string,
+};
 
-	type ManifestDescription = {
-		title?: string,
-		summary?: string,
-		date?: string,
-		details?: ManifestDetails,
-	};
+type ManifestDescription = {
+	title?: string,
+	summary?: string,
+	date?: string,
+	details?: ManifestDetails,
+};
 
-	type ManifestHistory = ManifestDescription[];
+type ManifestHistory = ManifestDescription[];
 
-	type ManifestEntry = ManifestDescription & {
-		ordinal?: string | number,
-		type?: string,
-		error?: string,
-		name?: string,
-		link?: string,
-		length?: string,
-		contents?: ManifestEntry[],
-	}
+type ManifestEntry = ManifestDescription & {
+	ordinal?: string | number,
+	type?: string,
+	error?: string,
+	name?: string,
+	link?: string,
+	length?: string,
+	contents?: ManifestEntry[],
+}
 
-	type Manifest = {
-		root?: string,
-		title?: string,
-		description: ManifestDescription,
-		contents: ManifestEntry[],
-		history: ManifestHistory,
-	}
-//}
+type Manifest = {
+	root?: string,
+	title?: string,
+	description: ManifestDescription,
+	contents: ManifestEntry[],
+	history: ManifestHistory,
+}
 
 const guessContentType = (filename: string) => {
 	const ext: string = String(filename?.split('.').pop());
@@ -103,7 +101,7 @@ async function fetchManifest ({ cache = true, root = '', recurse = false }:
 }
 
 export {
-	fetchManifest, 
+	fetchManifest,
 	Obj,
 	ManifestDetails,
 	ManifestDescription,
@@ -111,3 +109,5 @@ export {
 	ManifestEntry,
 	Manifest,
 }
+
+export default { fetchManifest };
