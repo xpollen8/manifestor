@@ -4,7 +4,7 @@
   "type": "module",
   "description": "Making manifests great",
   "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
+  "module": "./dist/cjs/index.js",
   "types": "./dist/esm/index.d.ts",
   "scripts": {
     "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
