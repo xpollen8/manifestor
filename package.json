@@ -1,0 +1,26 @@
+{
+  "name": "manifestor",
+  "version": "1.0.0",
+  "description": "Making manifests great",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/xpollen8/manifestor.git"
+  },
+  "author": "xpollen8",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xpollen8/manifestor/issues"
+  },
+  "homepage": "https://github.com/xpollen8/manifestor#readme",
+  "dependencies": {
+    "mime-types": "^2.1.35"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}
