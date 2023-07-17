@@ -1,6 +1,6 @@
 {
   "name": "manifestor",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "type": "module",
   "description": "Making manifests great",
   "main": "./dist/cjs/index.js",
