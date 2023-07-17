@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import mime from 'mime';
+//export manifestor;
 const guessContentType = (filename) => {
     const ext = String(filename === null || filename === void 0 ? void 0 : filename.split('.').pop());
     const mt = mime.getType(ext);

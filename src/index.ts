@@ -39,7 +39,7 @@ declare namespace manifestor {
 	}
 }
 
-export manifestor;
+//export manifestor;
 
 const guessContentType = (filename: string) => {
 	const ext: string = String(filename?.split('.').pop());
@@ -104,4 +104,4 @@ const fetchManifest = async ({ cache = true, root = '', recurse = false }:
 	return new_manifest;
 }
 
-export default { fetchManifest };
+export default fetchManifest;
