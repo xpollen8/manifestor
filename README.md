@@ -15,35 +15,34 @@ async function fetchManifest ({ cache = true, root = '', recurse = false }:
 Given a URL as `root`, `fetchManifest` will fetch the _manifest.json_ file from
 that endpoint, and transform it into an array of ManifestEntry json objects.
 
-If `recurse` is true, then `fetchManifest` will make fetch all folder
-URLs which are exposed by the _manifest.json_ file.
+If `recurse` is true, then `fetchManifest` will make recursive fetch calls to ll folder
+URLs which are exposed by that folder's _manifest.json_ file.
 
 In this way, a simple webserver can expose specific files via a clean API,
-allowing arbitrary metadata to be tied to each file returned.
+and allow arbitrary metadata to be tied to each file returned.
 
 # But... why?
 
-Suppose you are maintaining a collection media/files for a band, those files are
-strewn all over your hard drive, and you'd like to share some of data with the world.  
+Suppose you are maintaining a collection media/files, that those files are
+strewn all over your hard drive, and you'd like to share some of them with the world.  
 
-Sure, you could host the files on a cloud service.  But you've probably just
-duplicated your original file, and *HOW* do you intend to attach and deliver
-provenance metadata for those files in a consistent machine-readable manner.
+You could host the files on a cloud service.  But you've probably just
+duplicated your original file, lost important file creation timestamps (provenance), 
+and *HOW* do you intend to attach and deliver
+other metadata for those files in a consistent machine-readable manner>
 
-The approach that _Manifestor_ takes is to simple a simple webserver that
-is capable of delivering static JSON files.
-
-If a _manifest.json_ file is found at the web endpoint, it will
+The approach that _Manifestor_ takes is to deliver a _manifest.json_ file via a simple
+ webserver.  If a _manifest.json_ file is found at the web endpoint, it will
 list the contents of the folder that you wish to share.
 
-You can describe those files and folders along with any desired metadata: title,
+You can describe those files and folders along with metadata: title,
 description, provenance information, update history, etc.
 
-Each item of type *folder* that is found in a _manifest.json_ can be recursively
+Each item of type *folder* which is found in a _manifest.json_ can be recursively
 fetched by `fetchManifest`.
 
 The resulting data returned will be a JSON object
-with each folder populated from data found by recursive calls to `fetchManifest`.
+with each folder populated by recursive calls to `fetchManifest`.
 
 # Example
 
