@@ -30,9 +30,3 @@ export type Manifest = {
     contents: ManifestEntry[];
     history: ManifestHistory;
 };
-declare function fetchManifest({ cache, root, recurse }: {
-    cache?: boolean;
-    root?: string;
-    recurse?: boolean;
-}): Promise<Manifest>;
-export default fetchManifest;
