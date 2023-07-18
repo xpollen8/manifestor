@@ -15,20 +15,20 @@ async function fetchManifest ({ cache = true, root = '', recurse = false }:
 Given a URL as `root`, `fetchManifest` will fetch the _manifest.json_ file from
 that endpoint, and transform it into an array of ManifestEntry json objects.
 
-If `recurse` is tru, then `fetchManifest` will make fetch calls to all
-URL which are exposed by the _manifest.json_ file.
+If `recurse` is true, then `fetchManifest` will make fetch all folder
+URLs which are exposed by the _manifest.json_ file.
 
 In this way, a simple webserver can expose specific files via a clean API,
 allowing arbitrary metadata to be tied to each file returned.
 
 # But... why?
 
-Suppose you are maintaining datafiles for a band, and you'd liek to share
-them with the world.  
+Suppose you are maintaining a collection media/files for a band, those files are
+strewn all over your hard drive, and you'd like to share some of data them with the world.  
 
 Sure, you could host the files on a cloud service.  But you've probably just
 duplicated your original file, and *HOW* do you intend to attach and deliver
-metadata for those files in a consistent machine-readable manner.
+provenance metadata for those files in a consistent machine-readable manner.
 
 The approach that _Manifestor_ takes is to assuse a simple webserver that
 is capable of delivering .json files.  The top-most _manifest.json_ will
@@ -43,7 +43,8 @@ with each leaf fully populated from data found by recursive calls to `fetchManif
 
 # Example
 
-Here's an example of a top-level _manifest.json_ file:
+Here's an example of a top-level _manifest.json_ file that is created by the band's
+archivist to selectively gatekeep files.
 
 ```
 {
@@ -51,7 +52,6 @@ Here's an example of a top-level _manifest.json_ file:
   "description": {
     "summary": "Publicly available 700 West Recording digital assets.",
     "details": {
-      "body": "Click to open a folder, then to play/view media files - Enjoy",
       "date": "2023-07-10",
       "source": "David Whittemore"
     }
@@ -74,20 +74,20 @@ Here's an example of a top-level _manifest.json_ file:
       "summary": "Mappings for digitized audio boxes to publicly-sharable names."
       }
     },
-	"history": [
+  "history": [
     {
       "date": "2023-07-08",
       "summary": "Initial checkin"
     }
-	]
+  ]
 }
 ```
 
 If we make this call:
 
 ```
-	const root = process.env.MANIFEST_SERVER;
-	const manifest = await fetchManifest({ root, recurse: true });
+  const root = process.env.MANIFEST_SERVER;
+  const manifest = await fetchManifest({ root, recurse: true });
 ```
 
 Then _manifest_ will look something like this:
@@ -112,15 +112,15 @@ Then _manifest_ will look something like this:
             "summary": "David's CSV file: digitization details of the 700 West Recording tapes. Includes tape condition, images, Mo's comments, more. This is the data that drives tapes.700west.com",
             "type": "text/csv"
         },
-				{
-					name: 'audio/aliases.json',
-					link: '' <----- URL of the file
-					title: 'Aliases',
-					date: '2023-07-11',
-					summary: 'Mappings for digitized audio boxes to publicly-sharable names.',
-					type: 'application/json',
-					json: {} <------ THE CONTENTS OF 'audio/aliases.json'
-				},
+        {
+          name: 'audio/aliases.json',
+          link: '' <----- URL of the file
+          title: 'Aliases',
+          date: '2023-07-11',
+          summary: 'Mappings for digitized audio boxes to publicly-sharable names.',
+          type: 'application/json',
+          json: {} <------ THE CONTENTS OF 'audio/aliases.json'
+        },
         {
             "name": "interviews",
             "link": '' <----- URL to this directory
@@ -131,27 +131,29 @@ Then _manifest_ will look something like this:
                 "date": "2023-07-08"
             },
             "contents": [
-                {
-                    "name": "Dan Modlin Interview - Sep. 2010",
-                    "link": '' <-------- EXTERNAL URL TO AUDIO
-                    "title": "Dan Modlin Interview - Sep. 2010",
-                    "date": "2010-09-XX",
-                    "details": {
-                        "body": "We were at Dan Modlin's home last Thursday in Bowling Green, KY) he gave me a CD of the '700 West interview' he did with me about a month ago.  A question-and-answer thing. He also did the same with Dave Scott, asking him about his 700 West rememberances. The whole thing will air on WKU (public radio station) soon. (Dan's the news director, there...)",
-                        "source": "MJW Jr. email",
-                        "date": "2010-10-09"
-                    },
-                    "type": "audio/mpeg"
-                },
-								......
-						],
-				},
-	.......
-	]
-}
+                "https://700west.com/audio/20190426_WFYI_Interview.mp3": {
+                  "title": "'Cultural Manifesto' - Apr. 2019",
+                  "name": "'Cultural Manifesto' - Apr. 2019",
+                  "date": "2019-04-26",
+                  "summary": "Kyle Long hourlong broadcast",
+                  "length": "59:47",
+                  "details": {
+                    "body": "This week Kyle's guest is Moe Whittmore of 700 West Records. During the 1970s Moe recorded historically important funk, soul, and psychedelic rock music from his family's home in New Palestine, Indiana. We talk about a new compilation of his work titled 'Best of 700 West - Volume 2'.",
+                    "source": "Kyle Long"
+                    }
+                  },
+                  ......
+              ],
+          },
+    .......
+    ]
+  }
 ```
 
-# Important Note
+Observe that the *interviews* folder that was described in the original _manifest.json_ file
+has now been populated with the actual _interviews/manifest.json_ file via recursive calls.
+
+# Important points
 
 In the manifest.json file above, the items described in the *contents* object
 can be files in the same directory as the _manifest.json_ file, can be *symlinks*
