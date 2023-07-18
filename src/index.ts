@@ -1,4 +1,4 @@
-export declare namespace manifestor {
+//export declare namespace manifestor {
 	export type Obj = {
 		[key: string]: string | string[] | object | object[]
 	};
@@ -36,7 +36,7 @@ export declare namespace manifestor {
 		contents: ManifestEntry[],
 		history: ManifestHistory,
 	}
-}
+//}
 
 import mime from 'mime';
 
@@ -51,7 +51,7 @@ async function fetchManifest ({ cache = true, root = '', recurse = false }:
 		cache?: boolean,
 		root?: string,
 		recurse?: boolean
-	}) : Promise<manifestor.Manifest> {
+	}) : Promise<Manifest> {
 
 	const manifest = await fetch(`${root}/manifest.json`,
 		{ cache: (cache) ? 'default' : 'no-store' })
@@ -89,7 +89,7 @@ async function fetchManifest ({ cache = true, root = '', recurse = false }:
 	}));
 
 	// sort entries - ideally w/errors on bottom below directories
-	new_manifest.contents = new_manifest.contents.sort((a: manifestor.Obj, b: manifestor.Obj) => {
+	new_manifest.contents = new_manifest.contents.sort((a: Obj, b: Obj) => {
 		const name1 = String(a.title || a.name);
 		const name2 = String(a.title || b.name);
 		//if (name1 === name2) {
@@ -103,5 +103,4 @@ async function fetchManifest ({ cache = true, root = '', recurse = false }:
 	return new_manifest;
 }
 
-//export as namespace manifestor;
 export default fetchManifest;
