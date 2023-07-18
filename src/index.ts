@@ -1,41 +1,39 @@
-export namespace manifestor {
-	export type Obj = {
-		[key: string]: string | string[] | object | object[]
-	};
+export type Obj = {
+	[key: string]: string | string[] | object | object[]
+};
 
-	export type ManifestDetails = {
-		body?: string,
-		source?: string,
-		date?: string,
-	};
+export type ManifestDetails = {
+	body?: string,
+	source?: string,
+	date?: string,
+};
 
-	export type ManifestDescription = {
-		title?: string,
-		summary?: string,
-		date?: string,
-		details?: ManifestDetails,
-	};
+export type ManifestDescription = {
+	title?: string,
+	summary?: string,
+	date?: string,
+	details?: ManifestDetails,
+};
 
-	export type ManifestHistory = ManifestDescription[];
+export type ManifestHistory = ManifestDescription[];
 
-	export type ManifestEntry = ManifestDescription & {
-		ordinal?: string | number,
-		type?: string,
-		json?: Obj,
-		error?: string,
-		name?: string,
-		link?: string,
-		length?: string,
-		contents?: ManifestEntry[],
-	}
+export type ManifestEntry = ManifestDescription & {
+	ordinal?: string | number,
+	type?: string,
+	json?: Obj,
+	error?: string,
+	name?: string,
+	link?: string,
+	length?: string,
+	contents?: ManifestEntry[],
+}
 
-	export type Manifest = {
-		root?: string,
-		title?: string,
-		description: ManifestDescription,
-		contents: ManifestEntry[],
-		history: ManifestHistory,
-	}
+export type Manifest = {
+	root?: string,
+	title?: string,
+	description: ManifestDescription,
+	contents: ManifestEntry[],
+	history: ManifestHistory,
 }
 
 import mime from 'mime';
@@ -51,7 +49,7 @@ async function fetchManifest ({ cache = true, root = '', recurse = false }:
 		cache?: boolean,
 		root?: string,
 		recurse?: boolean
-	}) : Promise<manifestor.Manifest> {
+	}) : Promise<Manifest> {
 
 	const manifest = await fetch(`${root}/manifest.json`,
 		{ cache: (cache) ? 'default' : 'no-store' })
@@ -89,7 +87,7 @@ async function fetchManifest ({ cache = true, root = '', recurse = false }:
 	}));
 
 	// sort entries - ideally w/errors on bottom below directories
-	new_manifest.contents = new_manifest.contents.sort((a: manifestor.Obj, b: manifestor.Obj) => {
+	new_manifest.contents = new_manifest.contents.sort((a: Obj, b: Obj) => {
 		const name1 = String(a.title || a.name);
 		const name2 = String(a.title || b.name);
 		//if (name1 === name2) {

@@ -3,17 +3,13 @@
   "version": "1.0.10",
   "type": "module",
   "description": "Making manifests great",
-  "main": "dist/index.js",
-  "types": "types/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
-    "build": "rm -rf dist types && tsc -p tsconfig.json",
+    "build": "rm -rf index.js index.d.ts && tsc",
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-	"files": [
-		"dist/*",
-		"types/*"
-	],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/xpollen8/manifestor.git"
