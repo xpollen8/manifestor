@@ -1,3 +1,5 @@
+//export = manifestor;
+//export as namespace manifestor;
 import mime from 'mime';
 const guessContentType = (filename) => {
     const ext = String(filename?.split('.').pop());
