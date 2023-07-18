@@ -24,27 +24,31 @@ allowing arbitrary metadata to be tied to each file returned.
 # But... why?
 
 Suppose you are maintaining a collection media/files for a band, those files are
-strewn all over your hard drive, and you'd like to share some of data them with the world.  
+strewn all over your hard drive, and you'd like to share some of data with the world.  
 
 Sure, you could host the files on a cloud service.  But you've probably just
 duplicated your original file, and *HOW* do you intend to attach and deliver
 provenance metadata for those files in a consistent machine-readable manner.
 
-The approach that _Manifestor_ takes is to assuse a simple webserver that
-is capable of delivering .json files.  The top-most _manifest.json_ will
-describe the contents of the directory, and allow you to describe the files
-and directories within that level that would like to publish.
+The approach that _Manifestor_ takes is to simple a simple webserver that
+is capable of delivering static JSON files.
 
-Each *directory*/*folder* that is found in a _manifest.json_ file can be recursively
+If a _manifest.json_ file is found at the web endpoint, it will
+list the contents of the folder that you wish to share.
+
+You can describe those files and folders along with any desired metadata: title,
+description, provenance information, update history, etc.
+
+Each item of type *folder* that is found in a _manifest.json_ can be recursively
 fetched by `fetchManifest`.
 
-The resulting .json data returned to you will be a single manifest.json file
-with each leaf fully populated from data found by recursive calls to `fetchManifest`.
+The resulting data returned will be a JSON object
+with each folder populated from data found by recursive calls to `fetchManifest`.
 
 # Example
 
 Here's an example of a top-level _manifest.json_ file that is created by the band's
-archivist to selectively gatekeep files.
+archivist and used to selectively gatekeep files.
 
 ```
 {
@@ -90,7 +94,7 @@ If we make this call:
   const manifest = await fetchManifest({ root, recurse: true });
 ```
 
-Then _manifest_ will look something like this:
+The returned JSON will look something like this:
 
 ```
 {
@@ -123,7 +127,7 @@ Then _manifest_ will look something like this:
         },
         {
             "name": "interviews",
-            "link": '' <----- URL to this directory
+            "link": '' <----- URL to this folder
             "type": "folder",
             "title": "Interviews",
             "description": {
@@ -150,12 +154,19 @@ Then _manifest_ will look something like this:
   }
 ```
 
-Observe that the *interviews* folder that was described in the original _manifest.json_ file
+Observe that the *interviews* folder that was described in the archivist's original _manifest.json_ file
 has now been populated with the actual _interviews/manifest.json_ file via recursive calls.
 
 # Important points
 
 In the manifest.json file above, the items described in the *contents* object
-can be files in the same directory as the _manifest.json_ file, can be *symlinks*
-to (say) external drives, of even external URLs.
+can be files in the same folder as the _manifest.json_ file, can be *symlinks*
+to (say) external drives, of even external URLs.  This enables one to logically group files
+which may  be scattered across storage devices or URLs.  This is a powerful abstraction.
+
+# Next moves
+
+React components which rendfer *manifestor* JSON have been written and provide a nice data visualizer and a means to download files and play media.
+
+Such components will likely appear as part of this repo
 
