@@ -1,12 +1,10 @@
-//export = manifestor;
-//export as namespace manifestor;
 import mime from 'mime';
-const guessContentType = (filename) => {
+export const guessContentType = (filename) => {
     const ext = String(filename?.split('.').pop());
     const mt = mime.getType(ext);
     return mt;
 };
-async function fetchManifest({ cache = true, root = '', recurse = false }) {
+export default async function fetchManifest({ cache = true, root = '', recurse = false }) {
     const manifest = await fetch(`${root}/manifest.json`, { cache: (cache) ? 'default' : 'no-store' })
         .then(res => res.json())
         .catch(err => { return { error: 'MISSING_MANIFEST' }; });
@@ -52,4 +50,3 @@ async function fetchManifest({ cache = true, root = '', recurse = false }) {
     });
     return new_manifest;
 }
-export default fetchManifest;

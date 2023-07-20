@@ -1,6 +1,6 @@
 {
   "name": "manifestor",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "type": "module",
   "description": "Making manifests great",
   "main": "index.js",
