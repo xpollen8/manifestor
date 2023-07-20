@@ -3,12 +3,15 @@
 The exported function.
 
 ```
+import fetchManifest from 'manifestor';
+import * as mfTypes from 'manifestor';
+
 async function fetchManifest ({ cache = true, root = '', recurse = false }:
   {
     cache?: boolean,
     root?: string,
     recurse?: boolean
-  }) : Promise<manifestor.Manifest> {
+  }) : Promise<mfTypes.Manifest> {
 }
 ```
 
