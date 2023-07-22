@@ -17,6 +17,7 @@ export default async function fetchManifest({ cache = true, root = '', recurse =
     new_manifest.contents = []; // replace .contents
     manifest?.contents && await Promise.all(Object.keys(manifest?.contents)?.map(async (key) => {
         const entry = manifest?.contents[key];
+        console.log("ENTRY", entry);
         const externalLink = key.includes('https://');
         let commonContents = { name: entry?.name || key, link: (externalLink) ? key : `${root}/${key}` };
         let contents = {};
