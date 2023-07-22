@@ -3,6 +3,8 @@
 The exported function.
 
 ```
+import fetchManifest, * as manifestor from 'manifestor';
+
 async function fetchManifest ({ cache = true, root = '', recurse = false }:
   {
     cache?: boolean,
