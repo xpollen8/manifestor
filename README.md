@@ -31,7 +31,7 @@ strewn all over your hard drive, and you'd like to share some of them with the w
 You could host the files on a cloud service.  But you've probably just
 duplicated your original file, lost important file creation timestamps (provenance), 
 and *HOW* do you intend to attach and deliver
-other metadata for those files in a consistent machine-readable manner>
+other metadata for those files in a consistent machine-readable manner?
 
 The approach that _Manifestor_ takes is to deliver a _manifest.json_ file via a simple
  webserver.  If a _manifest.json_ file is found at the web endpoint, it will
@@ -167,7 +167,7 @@ which may  be scattered across storage devices or URLs.  This is a powerful abst
 
 # Next moves
 
-React components which rendfer *manifestor* JSON have been written and provide a nice data visualizer and a means to download files and play media.
+React components which render *manifestor* JSON have been written and provide a nice data visualizer and a means to download files and play media.
 
 Such components will likely appear as part of this repo
 
