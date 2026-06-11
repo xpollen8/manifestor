@@ -12,6 +12,7 @@ export type ManifestDescription = {
 	title?: string,
 	summary?: string,
 	date?: string,
+	source?: string,
 	details?: ManifestDetails,
 };
 
